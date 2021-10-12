@@ -41,6 +41,5 @@ steps:
     azureSubscription: 'Pay-As-You-Go(c6d8e3a9-122a-498c-a19e-73e5a045ec2b)'
     appType: 'webAppLinux'
     WebAppName: 'ng-demo-tlv'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/dist'
-    RuntimeStack: 'NODE|14-lts'
+    packageForLinux: './dist'
     StartupCommand: 'pm2 serve /home/site/wwwroot --no-daemon --spa'
