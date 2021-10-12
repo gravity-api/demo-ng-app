@@ -36,9 +36,10 @@ steps:
     customCommand: 'run build'
 
 - task: AzureRmWebAppDeployment@4
-  displayName: 'Azure App Service Deploy: ng-demo-tlv'
   inputs:
+    ConnectionType: 'AzureRM'
     azureSubscription: 'Pay-As-You-Go(c6d8e3a9-122a-498c-a19e-73e5a045ec2b)'
-    appType: webAppLinux
+    appType: 'webAppLinux'
     WebAppName: 'ng-demo-tlv'
-    packageForLinux: ./dist
+    packageForLinux: '$(System.DefaultWorkingDirectory)/dist'
+    RuntimeStack: 'NODE|14-lts'
