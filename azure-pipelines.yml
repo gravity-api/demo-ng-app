@@ -43,3 +43,4 @@ steps:
     WebAppName: 'ng-demo-tlv'
     packageForLinux: '$(System.DefaultWorkingDirectory)/dist'
     RuntimeStack: 'NODE|14-lts'
+    StartupCommand: 'pm2 serve /home/site/wwwroot --no-daemon --spa'
