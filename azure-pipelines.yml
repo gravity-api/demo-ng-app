@@ -1,0 +1,44 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  displayName: 'Use Node 14.x'
+  inputs:
+    versionSpec: 14.x
+    checkLatest: true
+
+- task: Npm@1
+  displayName: 'Install Angular CLI'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'install -g @angular/cli'
+
+- task: Npm@1
+  displayName: 'Install Packages'
+  inputs:
+    verbose: false
+
+- task: Npm@1
+  displayName: 'Run Build (npm)'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run build'
+
+- task: AzureRmWebAppDeployment@4
+  displayName: 'Azure App Service Deploy: ng-demo-tlv'
+  inputs:
+    azureSubscription: 'Pay-As-You-Go(c6d8e3a9-122a-498c-a19e-73e5a045ec2b)'
+    appType: webAppLinux
+    WebAppName: 'ng-demo-tlv'
+    packageForLinux: dist/
